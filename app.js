@@ -10,4 +10,15 @@ program.parse(process.argv);
 
 const options = program.opts();
 
+// Перевірка, чи задано вхідний файл
+if (!options.input) {
+    console.error('Please, specify input file');
+    process.exit(1);
+}
 
+// Перевірка, чи існує вхідний файл
+const inputPath = path.resolve(options.input);
+if (!fs.existsSync(inputPath)) {
+    console.error('Cannot find input file');
+    process.exit(1);
+}
